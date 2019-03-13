@@ -5,14 +5,14 @@ import java.util.*;
 public class BlackJack {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in); // initialize scanner
-        Map<String, List<Integer>> deck = createDeck(); // create a card deck
+        
         int sumOfCards = 0; // intialize sum of the cards
         List<Card> myHand = new ArrayList<>(); // Create my hand (list of cards)
+        Map<String, List<Integer>> deck = createDeck(); // create a card deck
 
         sumOfCards = initialDeal(deck, myHand, sumOfCards);
         printCurrentHand(myHand); // iterate through hand and print it out
-
-        playGame(input, deck, sumOfCards, myHand);
+        playGame(input, deck, sumOfCards, myHand); // enter while loop that executes until the game is over 
     }
 
     public static List<Integer> createCards() {
@@ -46,18 +46,21 @@ public class BlackJack {
         Card cardDelt = dealCardAndRemoveFromDeck(deck);
         myHand.add(cardDelt);
         sumOfCards += cardDelt.value;
+        
         return sumOfCards;
     }
 
     public static int hit(Map<String, List<Integer>> deck, int sumOfCards, List<Card> myHand) {
         sumOfCards = dealCardAndUpdateSum(deck, sumOfCards, myHand);
         printCurrentHand(myHand);
+        
         return sumOfCards;
     }
 
     public static int initialDeal(Map<String, List<Integer>> deck, List<Card> myHand, int sumOfCards) {
         sumOfCards = dealCardAndUpdateSum(deck, sumOfCards, myHand);
         sumOfCards = dealCardAndUpdateSum(deck, sumOfCards, myHand);
+        
         return sumOfCards;
     }
 
